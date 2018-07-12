@@ -1,0 +1,11 @@
+
+.RData
+.Rhistory
+  
+activity.csv
+*.BAK
+
+load_file.R
+Explo*.png
+
+PA1_template_cache/
