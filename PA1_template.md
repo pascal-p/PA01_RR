@@ -147,7 +147,7 @@ summary_steps_per_day
 ##           <dbl>           <int>
 ## 1        10766.           10765
 ```
-  So mean is `10766`, while median is `10765`.
+  So the mean is `10766`, while the median is `10765`.
   
 ## What is the average daily activity pattern?
 
@@ -193,6 +193,8 @@ steps_by_interval_max
 ##      <int> <dbl>
 ## 1      835  206.
 ```
+
+  The maximum is reached at interval = `835`, its value is 206 steps.
 
 ## Inputing missing values
 
@@ -371,15 +373,32 @@ ggplot(steps_by_interval_weektype, aes(x=interval, y=mean)) +
   xlab("Interval") + ylab("Number of steps") +
   facet_wrap(~weektype, nrow=2, ncol=1) +
   theme(
-    panel.background = element_rect(fill = "white", colour = "black",
-                                    size = 0.5, linetype = "solid"),
-    strip.background =  element_rect(fill = "wheat2", colour = "black",
-                                     size = 0.5)
+    panel.background = element_rect(fill="white", colour="black",
+                                    size=0.5, linetype="solid"),
+    strip.background =  element_rect(fill="wheat2", colour="black",
+                                     size=0.5)
 
 )
 ```
 
-![](figure/04_plot_steps_by_interval_weektype-1.png)<!-- -->
+![](figure/04_1_plot_steps_by_interval_weektype-1.png)<!-- -->
+
+  We can observe some differences, to make them more obvious let's produce a plot superposing the previous 2 plots.
+  
+
+```r
+ggplot(steps_by_interval_weektype, aes(x=interval, y=mean, colour=weektype)) + 
+  geom_line(size=0.5) +
+  theme(
+    panel.background = element_rect(fill = "white", colour = "black",
+                                    size = 0.5, linetype = "solid"),
+    strip.background =  element_rect(fill = "wheat2", colour = "black",
+                                     size = 0.5)
+  )
+```
+
+![](figure/04_2_plot_steps_by_interval_weektype-1.png)<!-- -->
+
 
 ## Annexe [Not required] - using median replacement for missing value
   *Remark: Feel free to completly ignore this part.* 

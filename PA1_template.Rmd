@@ -108,7 +108,7 @@ summary_steps_per_day <- num_steps_per_day %>%
 
 summary_steps_per_day
 ```
-  So mean is `10766`, while median is `10765`.
+  So the mean is `10766`, while the median is `10765`.
   
 ## What is the average daily activity pattern?
 
@@ -137,6 +137,8 @@ steps_by_interval_max <- steps_by_interval %>%
 
 steps_by_interval_max 
 ```
+
+  The maximum is reached at interval = `835`, its value is 206 steps.
 
 ## Inputing missing values
 
@@ -239,19 +241,33 @@ head(steps_by_interval_weektype)
 ```
 
   Plot:  
-```{r 04_plot_steps_by_interval_weektype, fig.height=9, fig.width=8}
+```{r 04_1_plot_steps_by_interval_weektype, fig.height=9, fig.width=8}
 ggplot(steps_by_interval_weektype, aes(x=interval, y=mean)) +
   geom_line(colour="slateblue") +
   xlab("Interval") + ylab("Number of steps") +
   facet_wrap(~weektype, nrow=2, ncol=1) +
   theme(
+    panel.background = element_rect(fill="white", colour="black",
+                                    size=0.5, linetype="solid"),
+    strip.background =  element_rect(fill="wheat2", colour="black",
+                                     size=0.5)
+
+)
+```
+
+  We can observe some differences, to make them more obvious let's produce a plot superposing the previous 2 plots.
+  
+```{r 04_2_plot_steps_by_interval_weektype, fig.height=6, fig.width=9}
+ggplot(steps_by_interval_weektype, aes(x=interval, y=mean, colour=weektype)) + 
+  geom_line(size=0.5) +
+  theme(
     panel.background = element_rect(fill = "white", colour = "black",
                                     size = 0.5, linetype = "solid"),
     strip.background =  element_rect(fill = "wheat2", colour = "black",
                                      size = 0.5)
-
-)
+  )
 ```
+
 
 ## Annexe [Not required] - using median replacement for missing value
   *Remark: Feel free to completly ignore this part.* 
